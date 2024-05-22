@@ -4,4 +4,4 @@ function install_slowdns(){
     chmod +x /tmp/nameserver
     bash /tmp/nameserver | tee /root/install.log
     print_success "SlowDNS"
-}￼Enter
+}
