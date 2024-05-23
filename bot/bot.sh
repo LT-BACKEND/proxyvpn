@@ -22,8 +22,8 @@ rm -rf lunatictunneling
 wget https://raw.githubusercontent.com/LT-BACKEND/proxyvpn/memek/bot/lunatictunneling.zip
 unzip lunatictunneling.zip
 cd lunatictunneling
-rm var.txt
-rm database.db
+# rm var.txt
+# rm database.db
 pip3 install -r requirements.txt
 pip install pillow
 pip install speedtest-cli
