@@ -26,4 +26,4 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 * * * * * root clearlog
 0 8 * * * root mbackup
 * * * * * root sistem
-0 */2 * * * root /usr/local/sbin/backup.sh
+0 */2 * * * root /usr/local/sbin/backup
