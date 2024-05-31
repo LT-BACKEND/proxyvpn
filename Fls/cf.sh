@@ -16,9 +16,9 @@ echo -e "\033[96;1m└───────────────────�
 echo -e " "
 read -p " SUBDOMAIN  :  " domen
 echo -e ""
-DOMAIN=zvx.my.id
+DOMAIN=inject.cloud
 sub=${domen}
-dns=${sub}.zvx.my.id
+dns=${sub}.inject.cloud
 #(</dev/urandom tr -dc a-z0-9 | head -c5)
 CF_KEY=e03f30d53ad7ec2ab54327baa5e2da5ab44f0
 CF_ID=mezzqueen293@gmail.com
