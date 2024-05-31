@@ -36,11 +36,19 @@ rm nsdomain
 clear
 figlet "slowdns" | lolcat
 echo -e ""
-read -rp " MASUKAN Nameserver: " -e sub
-SUB_DOMAIN=${sub}
+#read -rp " MASUKAN Nameserver: " -e sub
+#SUB_DOMAIN=${sub}
+#NS_DOMAIN=${SUB_DOMAIN}
+#echo $NS_DOMAIN > /root/nsdomain
+
+Host=inject.cloud
+sub=ns.`(</dev/urandom tr -dc a-z0-9 | head -c5)`
+#sub=ns.`</dev/urandom tr -dc x-z0-9 | head -c4`
+SUB_DOMAIN=${sub}.inject.cloud
 NS_DOMAIN=${SUB_DOMAIN}
 echo $NS_DOMAIN > /root/nsdomain
 
+#nameserver=$(cat /root/nsdomain)
 nameserver=$(cat /root/nsdomain)
 apt update -y
 apt install -y python3 python3-dnslib net-tools
