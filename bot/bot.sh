@@ -11,26 +11,26 @@ exit 0
 fi
 
 #install
-cp /media/lunatictunneling/var.txt /tmp
-cp /root/lunatictunneling/var.txt /tmp
-rm -rf lunatictunneling
+cp /media/lunatic/var.txt /tmp
+cp /root/lunatic/var.txt /tmp
+rm -rf lunatic
 apt update && apt upgrade -y
 apt install python3 python3-pip -y
 apt install sqlite3 -y
 cd /media/
-rm -rf lunatictunneling
-wget https://raw.githubusercontent.com/LT-BACKEND/proxyvpn/memek/bot/lunatictunneling.zip
-unzip lunatictunneling.zip
-cd lunatictunneling
-# rm var.txt
-# rm database.db
+rm -rf lunatic
+wget https://raw.githubusercontent.com/LT-BACKEND/proxyvpn/memek/bot/lunatic.zip
+unzip lunatic.zip
+cd lunatic
+ rm var.txt
+ rm database.db
 pip3 install -r requirements.txt
 pip install pillow
 pip install speedtest-cli
 pip3 install aiohttp
 pip3 install paramiko
 #isi data
-azi=$(cat /root/nsdomain)
+dean=$(cat /root/nsdomain)
 domain=$(cat /etc/xray/domain)
 clear
 echo "INSTALL BOT CREATE SSH via TELEGRAM"
@@ -38,11 +38,11 @@ read -e -p "[*] Input Your Id Telegram :" admin
 read -e -p "[*] Input Your bot Telegram :" token
 read -e -p "[*] Input username Telegram :" user
 
-cat > /media/lunatictunneling/var.txt << END
+cat > /media/lunatic/var.txt << END
 ADMIN="$admin"
 BOT_TOKEN="$token"
 DOMAIN="$domain"
-DNS="$azi"
+DNS="$dean"
 PUB="7fbd1f8aa0abfe15a7903e837f78aba39cf61d36f183bd604daa2fe4ef3b7b59"
 OWN="$user"
 SALDO="100000"
@@ -62,14 +62,14 @@ echo "Setting done"
 
 rm -f /usr/bin/nenen
 
-echo -e '#!/bin/bash\ncd /media/\npython3 -m lunatictunneling' > /usr/bin/nenen
+echo -e '#!/bin/bash\ncd /media/\npython3 -m lunatic' > /usr/bin/nenen
 
 
 chmod 777 /usr/bin/nenen
 
-cat > /etc/systemd/system/lunatictunneling.service << END
+cat > /etc/systemd/system/lunatic.service << END
 [Unit]
-Description=Simple lunatictunneling - @lunatictunneling
+Description=Simple lunatic - @lunatic
 After=network.target
 
 [Service]
@@ -82,8 +82,8 @@ WantedBy=multi-user.target
 
 END
 systemctl daemon-reload
-systemctl start lunatictunneling
-systemctl enable lunatictunneling
+systemctl start lunatic
+systemctl enable lunatic
 
 clear
 echo "downloading asset"
@@ -169,8 +169,8 @@ wget -q -O /usr/bin/cek-mss "https://raw.githubusercontent.com/LT-BACKEND/proxyv
 
 wget -q -O /usr/bin/cek-mts "https://raw.githubusercontent.com/LT-BACKEND/proxyvpn/memek/bot/cek-mts.sh" && chmod +x /usr/bin/cek-mts
 
-cp /tmp/var.txt /media/lunatictunneling
+cp /tmp/var.txt /media/lunatic
 
 echo " Installations complete, type /menu on your bot "
 
-rm /media/lunatictunneling.zip
+rm /media/lunatic.zip
