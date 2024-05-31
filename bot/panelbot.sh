@@ -1,5 +1,5 @@
 #!/bin/bash
-export RED='\033[0;31m'
+export REDDD='\033[0;31m'
 export GREEN='\033[0;32m'
 export YELLOW='\033[0;33m'
 export BLUE='\033[0;34m'
@@ -8,13 +8,13 @@ export CYAN='\033[0;36m'
 export LIGHT='\033[0;37m'
 export NC='\033[0m'
 
-lunatic_service=$(systemctl status lunatictunneling | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
+lunatic_service=$(systemctl status lunatic | grep Active | awk '{print $3}' | cut -d "(" -f2 | cut -d ")" -f1)
 
 # STATUS SERVICE  SQUID 
 if [[ $lunatic_service == "running" ]]; then 
-   status_lunatictunneling=" ${GREEN}Running ${NC}"
+   status_lunatic=" ${GREEN}[ONLINE]${NC}"
 else
-   status_lunatictunneling="${RED}  Not Running ${NC}"
+   status_lunatic=" ${REDDD}[OFLINE]${NC}"
 fi
 clear
 echo -e "${CYAN}━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━\033[0m${NC}"
@@ -31,9 +31,9 @@ echo -e ""
 read -p "PILIH NOMOR:" bro
 
 case $bro in
-01 | 1) clear ; systemctl restart lunatictunneling && panelbot ;;
-02 | 2) clear ; systemctl stop lunatictunneling && panelbot ;;
-03 | 3) clear ; nano /root/lunatictunneling/var.txt ;;
+01 | 1) clear ; systemctl restart lunatic && panelbot ;;
+02 | 2) clear ; systemctl stop lunatic && panelbot ;;
+03 | 3) clear ; nano /root/lunatic/var.txt ;;
 100) clear ; $up2u ;;
 00 | 0) clear ; menu ;;
 *) clear ; menu ;;
