@@ -29,7 +29,12 @@ fi
 # ==================================================
 # Link Hosting Kalian
 babatok="raw.githubusercontent.com/LT-BACKEND/proxyvpn/memek/Wg"
+mkdir -p /etc/wireguard
+mkdir -p /etc/wireguard/.wireguard.db
+mkdir -p /etc/lunatic/limit/wireguard/ip
+mkdir -p /etc/lunatic
 
+echo "plughin account" > /etc/wireguard/.wireguard.db
 # Check OS version
 if [[ -e /etc/debian_version ]]; then
 	source /etc/os-release
@@ -69,6 +74,7 @@ elif [[ ${OS} == 'centos' ]]; then
 	fi
 apt install iptables iptables-persistent -y
 # Make sure the directory exists (this does not seem the be the case on fedora)
+mkdir -p /etc/wireguard >/dev/null 2>&1
 mkdir /etc/wireguard >/dev/null 2>&1
 
 chmod 600 -R /etc/wireguard/
@@ -83,7 +89,6 @@ SERVER_WG_IPV4=10.66.66.1
 SERVER_PORT=7070
 SERVER_PRIV_KEY=$SERVER_PRIV_KEY
 SERVER_PUB_KEY=$SERVER_PUB_KEY" >/etc/wireguard/params
-
 source /etc/wireguard/params
 
 # Add server interface
