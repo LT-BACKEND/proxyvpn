@@ -308,8 +308,8 @@ service xl2tpd restart 2>/dev/null
 #wget -O /usr/bin/delpptp https://${babatok}/delpptp.sh && chmod +x /usr/bin/delpptp
 #wget -O /usr/bin/renewpptp https://${babatok}/renewpptp.sh && chmod +x /usr/bin/renewpptp
 #wget -O /usr/bin/renewl2tp https://${babatok}/renewl2tp.sh && chmod +x /usr/bin/renewl2tp
-touch /var/lib/akbarstorevpn/data-user-l2tp
-touch /var/lib/akbarstorevpn/data-user-pptp
+#touch /var/lib/akbarstorevpn/data-user-l2tp
+#touch /var/lib/akbarstorevpn/data-user-pptp
 touch /etc/l2tp/.l2tp.db
 touch /etc/sstp/.sstp.db
 rm -f /root/ipsec.sh
