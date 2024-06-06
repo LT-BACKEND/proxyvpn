@@ -1,13 +1,13 @@
 #!/bin/bash
 clear
 REPO="https://raw.githubusercontent.com/LT-BACKEND/proxyvpn/memek/"
-systemctl stop vmip vlip trip
-cd /usr/bin
+systemctl stop vmip vlip trip ssip ipssh
+cd /usr/bin/manager
 rm -rf limit-ip
 cd
-wget -q -O /usr/bin/limit-ip "${REPO}Fls/limit-ip"
-chmod +x /usr/bin/*
-cd /usr/bin
+wget -q -O /usr/bin/manager/limit-ip "${REPO}Fls/limit-ip"
+chmod +x /usr/bin/manager/*
+cd /usr/bin/manager
 sed -i 's/\r//' limit-ip
 cd
 clear
@@ -18,7 +18,7 @@ Description=My
 ProjectAfter=network.target
 [Service]
 WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip vmip
+ExecStart=/usr/bin/manager/limit-ip vmip
 Restart=always
 [Install]
 WantedBy=multi-user.target
@@ -33,7 +33,7 @@ Description=My
 ProjectAfter=network.target
 [Service]
 WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip vlip
+ExecStart=/usr/bin/manager/limit-ip vlip
 Restart=always
 [Install]
 WantedBy=multi-user.target
@@ -48,7 +48,7 @@ Description=My
 ProjectAfter=network.target
 [Service]
 WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip trip
+ExecStart=/usr/bin/manager/limit-ip trip
 Restart=always
 [Install]
 WantedBy=multi-user.target
@@ -63,7 +63,7 @@ Description=My
 ProjectAfter=network.target
 [Service]
 WorkingDirectory=/root
-ExecStart=/usr/bin/limit-ip ssip
+ExecStart=/usr/bin/manager/limit-ip ssip
 Restart=always
 [Install]
 WantedBy=multi-user.target
