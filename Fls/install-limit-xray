@@ -1,0 +1,79 @@
+#!/bin/bash
+clear
+REPO="https://raw.githubusercontent.com/LT-BACKEND/proxyvpn/memek/"
+systemctl stop vmip vlip trip
+cd /usr/bin
+rm -rf limit-ip
+cd
+wget -q -O /usr/bin/limit-ip "${REPO}Fls/limit-ip"
+chmod +x /usr/bin/*
+cd /usr/bin
+sed -i 's/\r//' limit-ip
+cd
+clear
+# vmess
+cat >/etc/systemd/system/vmip.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/limit-ip vmip
+Restart=always
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl restart vmip
+systemctl enable vmip
+# vless
+cat >/etc/systemd/system/vlip.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/limit-ip vlip
+Restart=always
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl restart vlip
+systemctl enable vlip
+# trojan
+cat >/etc/systemd/system/trip.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/limit-ip trip
+Restart=always
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl restart trip
+systemctl enable trip
+# shadowsocks
+cat >/etc/systemd/system/ssip.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/limit-ip ssip
+Restart=always
+[Install]
+WantedBy=multi-user.target
+EOF
+systemctl daemon-reload
+systemctl restart ssip
+systemctl enable ssip
+
+
+
+clear
+echo "\e[92;1mSuccesfully install limit login xray\e[0m"
+cd
