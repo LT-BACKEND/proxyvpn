@@ -1,32 +1,67 @@
-# /etc/crontab: system-wide crontab
-# Unlike any other crontab you don't have to run the `crontab'
-# command to install the new version when you edit this file
-# and files in /etc/cron.d. These files also have username fields,
-# that none of the other crontabs do.
+cat >/etc/cron.d/xp <<-END
+SHELL=/bin/sh
+PATH=/usr/bin/manager:/usr/bin/bin:/manager:/bin:/usr/manager:/usr/bin
+0 */2 * * * root /usr/bin/manager/xp
+*/1 * * * * root /usr/bin/manager/mullog
+END
 
+cat >/etc/cron.d/lock-xray-ip <<-END
+SHELL=/bin/sh
+PATH=/usr/bin/manager:/usr/bin/bin:/manager:/bin:/usr/manager:/usr/bin
+*/1 * * * root /usr/bin/manager/lock-xray-ip
+END
+
+cat >/etc/cron.d/autobackup <<-END
+SHELL=/bin/sh
+PATH=/usr/bin/manager:/usr/bin/bin:/manager:/bin:/usr/manager:/usr/bin
+*/1 * * * root /usr/bin/manager/autobackup
+END
+
+cat >/etc/cron.d/limit-ip <<-END
+SHELL=/bin/sh
+PATH=/usr/bin/manager:/usr/bin/bin:/manager:/bin:/usr/manager:/usr/bin
+*/1 * * * root /usr/bin/manager/limit-ip
+END
+
+cat >/etc/cron.d/killtrial <<-END
+SHELL=/bin/sh
+PATH=/usr/bin/manager:/usr/bin:/manager:/bin:/usr/manager:/usr/bin
+*/45 * * * root /usr/bin/manager/killtrial
+END
+
+
+cat >/etc/cron.d/autobackup <<-END
+SHELL=/bin/sh
+PATH=/usr/bin/manager:/usr/bin/manager:/bin:/manager:/usr/bin:/usr/bin
+*/10 * * * * root /usr/bin/manager/clearlog
+0 */2 * * * root /usr/bin/manager/backup
+0 */2 * * * root /usr/bin/manager/autobackup
+0 */2 * * * root /usr/bin/manager/backupvps
+0 */2 * * * root /usr/bin/manager/m-backup
+
+END
+
+chmod 644 /root/.profile
+cat >/etc/cron.d/daily_reboot <<-END
 SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+0 5 * * * root /sbin/reboot
+END
 
-# Example of job definition:
-# .---------------- minute (0 - 59)
-# |  .------------- hour (0 - 23)
-# |  |  .---------- day of month (1 - 31)
-# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
-# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
-# |  |  |  |  |
-# *  *  *  *  * user-name command to be executed
-17 *	* * *	root    cd / && run-parts --report /etc/cron.hourly
-25 6	* * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.daily )
-47 6	* * 7	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
-52 6	1 * *	root	test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
-#
-0 5 * * * root reboot
-59 * * * * root pkill 'menu'
-0 1 * * * root xp
-* * * * * root clearlog
-0 8 * * * root mbackup
-* * * * * root sistem
-0 */2 * * * root /usr/local/sbin/backup
-0 */2 * * * root /usr/local/sbin/autobackup
-0 */2 * * * root /usr/local/sbin/m-autobackup
-0 */2 * * * root /usr/local/sbin/xp
+echo "*/1 * * * * root echo -n > /var/log/nginx/access.log" >/etc/cron.d/log.nginx
+echo "*/1 * * * * root echo -n > /var/log/xray/access.log" >>/etc/cron.d/log.xray
+service cron restart
+cat >/home/daily_reboot <<-END
+END
+
+cat >/etc/cron.d/limitssh-ip <<-END
+SHELL=/bin/sh
+PATH=/usr/bin/manager:/usr/local/manager:/manager:/bin:/usr/manager:/usr/bin
+*/1 * * * * root /usr/bin/manager/limitssh-ip
+END
+
+cat >/etc/cron.d/lock-xray-ip <<-END
+SHELL=/bin/sh
+PATH=/usr/bin/manager:/usr/local/manager:/manager:/bin:/usr/manager:/usr/bin
+*/1 * * * * root /usr/bin/manager/lock-xray-ip
+END
