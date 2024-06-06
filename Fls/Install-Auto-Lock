@@ -1,0 +1,13 @@
+#!/bin/bash
+REPO="https://raw.githubusercontent.com/LT-BACKEND/proxyvpn/memek/"
+wget -q -O /usr/bin/manager/vmess1.service "${REPO}Fls/vmess1.service" && chmod +x vmess1.service >/dev/null 2>&1
+wget -q -O /usr/bin/manager/vless1.service "${REPO}Fls/vless1.service" && chmod +x vless1.service >/dev/null 2>&1
+wget -q -O /usr/bin/manager/trojan1.service "${REPO}Fls/trojan1.service" && chmod +x trojan1.service >/dev/null 2>&1
+wget -q -O /usr/bin/manager/shadowsocks1.service "${REPO}Fls/shadowsocks1.service" && chmod +x shadowsocks1.service >/dev/null 2>&1
+
+systemctl start vmess1 vless1 trojan1 shadowsocks1
+systemctl daemon-reload
+systemctl enable --now vmess1.service
+systemctl enable --now vless1.service
+systemctl enable --now trojan1.service
+systemctl enable --now shadowsocks1.service
