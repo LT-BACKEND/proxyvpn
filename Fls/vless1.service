@@ -1,5 +1,5 @@
 [unit]
-description=my
+description=Limit Minutes Xray
 projectafter=network.target
 
 [service]
