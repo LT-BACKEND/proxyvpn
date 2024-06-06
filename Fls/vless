@@ -34,8 +34,8 @@ function con() {
   while true; do
   sleep 5
   data=($(cat /etc/xray/config.json | grep '^#&' | cut -d ' ' -f 2 | sort | uniq))
-  if [[ ! -e /etc/limit/vless ]]; then
-  mkdir -p /etc/limit/vless
+  if [[ ! -e /etc/lunatic/limit/vless ]]; then
+  mkdir -p /etc/lunatic/limit/vless
   fi
   for user in ${data[@]}
   do
@@ -47,14 +47,14 @@ function con() {
         plus2=$(cat /etc/limit/vless/${user});
         if [[ ${#plus2} -gt 0 ]]; then
         plus3=$(( ${downlink} + ${plus2} ));
-        echo "${plus3}" > /etc/limit/vless/"${user}"
+        echo "${plus3}" > /etc/lunatic/limit/vless/"${user}"
         xray api stats --server=127.0.0.1:10000 -name "user>>>${user}>>>traffic>>>downlink" -reset > /dev/null 2>&1
         else
-        echo "${downlink}" > /etc/limit/vless/"${user}"
+        echo "${downlink}" > /etc/lunatic/limit/vless/"${user}"
         xray api stats --server=127.0.0.1:10000 -name "user>>>${user}>>>traffic>>>downlink" -reset > /dev/null 2>&1
         fi
         else
-        echo "${downlink}" > /etc/limit/vless/"${user}"
+        echo "${downlink}" > /etc/lunatic/limit/vless/"${user}"
         xray api stats --server=127.0.0.1:10000 -name "user>>>${user}>>>traffic>>>downlink" -reset > /dev/null 2>&1
         fi
         else
@@ -67,16 +67,16 @@ for user in ${data[@]}
     if [ -e /etc/vless/${user} ]; then
       checkLimit=$(cat /etc/vless/${user});
       if [[ ${#checkLimit} -gt 1 ]]; then
-      if [ -e /etc/limit/vless/${user} ]; then
-      Usage=$(cat /etc/limit/vless/${user});
+      if [ -e /etc/lunatic/limit/vless/${user} ]; then
+      Usage=$(cat /etc/lunatic/limit/vless/${user});
       if [[ ${Usage} -gt ${checkLimit} ]]; then
       total=$(con ${Usage})
       total2=$(con ${checkLimit})
       exp=$(grep -w "^#& $user" "/etc/xray/config.json" | cut -d ' ' -f 3 | sort | uniq)
       sed -i "/^#& $user $exp/,/^},{/d" /etc/xray/config.json
-      sed -i "/^#& $user $exp/d" /etc/vless/.vless.db
+      sed -i "/^#vle# $user $exp/d" /etc/vless/.vless.db
       send-log
-      rm -f /etc/funny/limit/vless/ip/$user
+      rm -f /etc/lunatic/limit/vless/ip/$user
 	  rm -f /etc/vless/$user
 	  rm -f /etc/limit/vless/$user
 	  rm -f /etc/limit/vless/quota/$user
