@@ -1,0 +1,11 @@
+cat >/etc/systemd/system/shadowsocks1.service << EOF
+[Unit]
+Description=My
+ProjectAfter=network.target
+[Service]
+WorkingDirectory=/root
+ExecStart=/usr/bin/manager/Auto-Lock-Xray shadowsocks1
+Restart=always
+[Install]
+WantedBy=multi-user.target
+EOF

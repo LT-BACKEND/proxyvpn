@@ -1,0 +1,11 @@
+cat >/etc/systemd/system/vless1.service << eof
+[unit]
+description=my
+projectafter=network.target
+[service]
+workingdirectory=/root
+execstart=/usr/bin/manager/auto-lock-xray vless1
+restart=always
+[install]
+wantedby=multi-user.target
+eof 
