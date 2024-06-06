@@ -33,6 +33,7 @@ data=( `ls /etc/lunatic/limit/vmess/ip`);
                   systemctl restart xray >> /dev/null 2>&1
                   jum2=$(cat /tmp/ipvmess.txt | wc -l)
                   rm -rf /etc/lunatic/limit/vmess/ip/$user
+                  rm -rf /etc/detail/vme/$user.txt
                   send_log
                 else
             echo ""
@@ -44,7 +45,7 @@ function vlip(){
 #LIMITVLESSIP
 echo -n > /var/log/xray/access.log
 sleep 440
-data=( `ls /etc/kyt/limit/vless/ip`);
+data=( `ls /etc/lunatic/limit/vless/ip`);
 #Decrypted By LUNATIC BACKEND
     for user in "${data[@]}"
     do
@@ -58,6 +59,7 @@ data=( `ls /etc/kyt/limit/vless/ip`);
                   systemctl restart xray >> /dev/null 2>&1
                   jum2=$(cat /tmp/ipvless.txt | wc -l)
                   rm -rf /etc/lunatic/limit/vless/ip/$user
+                  rm -rf /etc/detail/vle/$user.txt
                   send_log
                 else
             echo ""
@@ -70,7 +72,7 @@ function trip(){
 echo -n > /var/log/xray/access.log
 sleep 440
 data=( `ls /etc/lunatic/limit/trojan/ip`);
-#Decrypted By YADDY D PHREAKER
+#Decrypted By LUNATIC x BACKEND
     for user in "${data[@]}"
     do
         iplimit=$(cat /etc/lunatic/limit/trojan/ip/$user)
@@ -83,6 +85,7 @@ data=( `ls /etc/lunatic/limit/trojan/ip`);
                   systemctl restart xray >> /dev/null 2>&1
                   jum2=$(cat /tmp/iptrojan.txt | wc -l)
                   rm -rf /etc/lunatic/limit/trojan/ip/$user
+                  rm -rf /etc/detail/tro/$user.txt
                   send_log
                 else
             echo ""
@@ -90,6 +93,7 @@ data=( `ls /etc/lunatic/limit/trojan/ip`);
         sleep 0.1
     done
 }
+function ssip(){
 #LIMITIPSHADOWSOCKS
 echo -n > /var/log/xray/access.log
 sleep 440
@@ -107,6 +111,7 @@ data=( `ls /etc/lunatic/limit/shadowsocks/ip`);
                   systemctl restart xray >> /dev/null 2>&1
                   jum2=$(cat /tmp/ipshadowsocks.txt | wc -l)
                   rm -rf /etc/lunatic/limit/shadowsocks/ip/$user
+                  rm -rf /etc/detail/ssr/$user.txt
                   send_log
                 else
             echo ""
