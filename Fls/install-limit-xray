@@ -10,6 +10,7 @@ chmod +x /usr/bin/manager/*
 cd /usr/bin/manager
 sed -i 's/\r//' limit-ip
 cd
+
 clear
 # vmess
 cat >/etc/systemd/system/vmip.service << EOF
